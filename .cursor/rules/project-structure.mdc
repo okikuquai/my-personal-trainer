@@ -1,0 +1,62 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Fitness Tracker Project Rules
+
+## プロジェクト概要
+Google Fit APIを使用した自動フィットネスデータ収集システム。GitHub Actionsで毎日のアクティビティと体重データを自動収集し、JSONファイルとして保存する。
+
+## 重要な注意事項
+**Google Fit REST API は2026年に非推奨**になる予定で、2024年5月1日以降は新規デベロッパー登録ができない。将来的にはHealth Connectへの移行を想定した設計にすること。
+
+## ファイル構造とその役割
+
+### 認証とAPI連携
+- [scripts/auth.py](mdc:scripts/auth.py): OAuth認証の核となるクラス。Google Fit APIへのアクセストークン取得を担当
+- [scripts/setup_oauth.py](mdc:scripts/setup_oauth.py): 初回OAuth設定を支援するインタラクティブスクリプト
+
+### データ収集スクリプト  
+- [scripts/fetch_activity.py](mdc:scripts/fetch_activity.py): アクティビティデータ（歩数、距離、カロリー、アクティブ時間）の取得
+- [scripts/fetch_weight.py](mdc:scripts/fetch_weight.py): 体重データの取得（集計API + データソース直接取得の2段構え）
+
+### 自動化
+- [.github/workflows/daily-fitness-data.yml](mdc:.github/workflows/daily-fitness-data.yml): 毎日午前1時（JST）に実行される GitHub Actions ワークフロー
+
+### データ保存
+- `activity/YYYY-MM-DD.json`: 日別アクティビティデータ
+- `weight/YYYY-MM-DD.json`: 日別体重データ
+
+### 設定・依存関係
+- [requirements.txt](mdc:requirements.txt): Python依存関係
+- [README.md](mdc:README.md): プロジェクトドキュメント
+
+## 開発ガイドライン
+
+### 環境変数（GitHub Secrets）
+以下のシークレットが必要：
+- `GOOGLE_OAUTH_CLIENT_ID`
+- `GOOGLE_OAUTH_CLIENT_SECRET` 
+- `GOOGLE_REFRESH_TOKEN`
+
+### データ形式統一
+- 日付: `YYYY-MM-DD` 形式
+- タイムスタンプ: ISO 8601形式（UTC）
+- 体重: kg単位、小数点第1位まで
+- 距離: km単位、小数点第2位まで
+
+### エラーハンドリング原則
+- 体重データがない日は空ファイルを作成しない
+- API エラー時も GitHub Actions は失敗させない
+- ログ出力は日本語で分かりやすく
+
+### 拡張性考慮
+- 新しいデータタイプ追加時は既存構造を踏襲
+- Health Connect移行を見据えたモジュール設計
+- JSONスキーマの互換性維持
+
+## トラブルシューティング
+1. 認証エラー → [scripts/setup_oauth.py](mdc:scripts/setup_oauth.py)でテスト実行
+2. データ取得失敗 → Google Fit APIの権限スコープ確認
+3. GitHub Actions失敗 → Secretsの設定とワークフロー権限確認
