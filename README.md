@@ -1,11 +1,11 @@
 # Fitness Tracker with Android Health Connect
 
-Android Health Connectを活用した健康・フィットネスデータ管理システムなのだ！  
-Android Health Connectプラットフォームを使って、安全で一元管理されたヘルスデータの収集・管理を行うのだ。
+Android Health Connectを活用した健康・フィットネスデータ管理システムです。  
+Android Health Connectプラットフォームを使って、安全で一元管理されたヘルスデータの収集・管理を行います。
 
 ## 🎯 このリポジトリについて 
 
-このシステムを最大限活用するための前提条件なのだ：
+このシステムを最大限活用するための前提条件：
 
 ### 📱 フィットネスアプリでの日々の記録
 - **Health Connect対応アプリ**で日々のアクティビティを記録してください
@@ -23,7 +23,7 @@ Android Health Connectプラットフォームを使って、安全で一元管�
 
 ## 🌟 Android Health Connectとは
 
-[Android Health Connect](https://developer.android.com/health-and-fitness/guides/health-connect?hl=ja)は、Androidデバイス上でヘルスとフィットネスのデータを安全に保存・共有するためのプラットフォームなのだ。
+[Android Health Connect](https://developer.android.com/health-and-fitness/guides/health-connect?hl=ja)は、Androidデバイス上でヘルスとフィットネスのデータを安全に保存・共有するためのプラットフォームです。
 
 ### 主な特徴
 - **一元管理**: 複数のアプリからのヘルスデータを統合
@@ -158,7 +158,7 @@ private val healthConnectClient by lazy { HealthConnectClient.getOrCreate(contex
 
 ## 🔒 プライバシーとセキュリティ
 
-Health Connectは以下のプライバシー原則に基づいて設計されているのだ：
+Health Connectは以下のプライバシー原則に基づいて設計されています：
 
 - **ユーザーコントロール**: すべてのデータアクセスをユーザーが制御
 - **透明性**: どのアプリがどのデータにアクセスするかを明確化
@@ -195,7 +195,7 @@ suspend fun insertWeight(weightKg: Double) {
 
 ## 🤖 GitHub Actions
 
-毎日自動でHealth Connectからデータを収集し、JSONファイルとして保存するワークフローを設定できるのだ。
+毎日自動でHealth Connectからデータを収集し、JSONファイルとして保存するワークフローを設定できます。
 
 ## 📱 対応プラットフォーム
 
