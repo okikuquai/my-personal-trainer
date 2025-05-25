@@ -1,2 +1,36 @@
+# Android Health Connect フィットネストラッカー用ライブラリ
+
+# Web API リクエスト用（将来的な外部API連携に備えて）
 requests>=2.31.0
-python-dateutil>=2.8.2 
+
+# 日時処理
+python-dateutil>=2.8.2
+
+# データクラス関連（Python 3.7以上では標準ライブラリ）
+dataclasses>=0.8; python_version<"3.7"
+
+# ログ機能強化（オプション）
+coloredlogs>=15.0
+
+# JSON処理の高速化（オプション）
+orjson>=3.9.0
+
+# Health Connect Python SDK（将来的に利用予定）
+# TODO: 公式SDKがリリースされたら追加
+# health-connect-python>=1.0.0
+
+# Android ADB interface（デバイス接続用、オプション）
+adb-shell>=0.4.4
+
+# データ分析用（オプション）
+numpy>=1.24.0
+pandas>=2.0.0
+
+# プロット・グラフ作成用（オプション）
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 開発・テスト用
+pytest>=7.4.0
+black>=23.7.0
+flake8>=6.0.0 
